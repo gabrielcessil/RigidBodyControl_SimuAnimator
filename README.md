@@ -12,6 +12,10 @@ Our tool is validates here integrating the dynamic equation of Rotary Pendulum. 
 
 
 Output example [here](https://gabrielcessil.github.io/RigidBodyControl_SimuAnimator/Mechanism_Animation.html)
+<p align="center">
+  <img src="docs/Printscreen.png" width="50%">
+</p>
+
 ---
 
 ## Purpose
