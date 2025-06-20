@@ -5,10 +5,9 @@
 
 This repository provides a Python-based tool for simulating and **visualizing the dynamic motion of rigid body mechanisms under a specified control law**. The framework numerically solves the nonlinear dynamics of a mechanism based on the Lagrangian formulation and produces an **interactive HTML animation file** that illustrates both the physical motion (in 3D space) and the evolution of state variables over time.
 
-This tool is designed for academic and educational purposes in the fields of **dynamics, control systems, robotics, and mechanical systems modeling**.
+This tool is designed for academic and educational purposes in the fields of **dynamics, control systems, robotics, and mechanical systems modeling**. The main idea is to provide a framework of comprehension about control laws and robotic dynamic equations.
 
-A complete implementation of the **Furuta Pendulum** (rotational inverted pendulum) is included, using the rigorous dynamic model derived in:
-
+Our tool is validates here integrating the dynamic equation of Rotary Pendulum. A complete implementation of the **Furuta Pendulum** (rotational inverted pendulum) is included, using the rigorous dynamic model derived in:
 > B. S. Cazzolato and Z. Prime, "On the Dynamics of the Furuta Pendulum," *Journal of Control Science and Engineering*, vol. 2011, Article ID 528341. [https://doi.org/10.1155/2011/528341](https://doi.org/10.1155/2011/528341)
 
 ---
@@ -155,6 +154,7 @@ class Rotary_Pendulum(Mechanism):
 ```
 
 ### Final Code Example
+Once the mechanism is defined, we can use a control law (in this example a open loop step) and integrate the dynamic equation of motion. The following example replicates the one found in the referenced article in order to validate the integration.
 
 ```python
 from rotary_pendulum import Rotary_Pendulum
@@ -197,3 +197,7 @@ pendulum.solve_system(control_law, x0=initial_state, tf=4, steps=400)
 animator = MechanicalSystemAnimation(pendulum)
 animator.create_animation()
 ```
+
+## Limitations
+
+This code is a practical tool to visualize the robotic equations of motion and it's control. However, numerical tools as Matlab/Simulink provide a more robust simulation for final implementations. Use this tool for didactic or initial project steps. 
