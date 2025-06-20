@@ -27,6 +27,12 @@ The simulation requires the user to define the physical parameters and the funct
 The tool is validates here integrating the dynamic equation of Rotary Pendulum. A complete implementation of the **Furuta Pendulum** (rotational inverted pendulum) is included, using the rigorous dynamic model derived in:
 > B. S. Cazzolato and Z. Prime, "On the Dynamics of the Furuta Pendulum," *Journal of Control Science and Engineering*, vol. 2011, Article ID 528341. [https://doi.org/10.1155/2011/528341](https://doi.org/10.1155/2011/528341)
 
+Another inspiring source for Futura pendulum integration and validation is presented below, using the rigid body simulation from matlab.
+> Alan Jennings (2025). Furuta (rotary) Pendulum (https://www.mathworks.com/matlabcentral/fileexchange/34521-furuta-rotary-pendulum), MATLAB Central File Exchange. Retrieved June 20, 2025.
+
+Morever, here we present a validation with open-loop control law, but you can find a simple controller for furuta pendulum in the article below:
+> Aguilar-Avelar, Carlos, and Javier Moreno-Valenzuela. "A feedback linearization controller for trajectory tracking of the Furuta pendulum." 2014 American Control Conference. IEEE, 2014.
+
 
 ## Access the animated output example [here](https://gabrielcessil.github.io/RigidBodyControl_SimuAnimator/Mechanism_Animation.html)
 <p align="center">
