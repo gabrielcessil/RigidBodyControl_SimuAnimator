@@ -1,6 +1,14 @@
 
 # Robotic Mechanism Simulator and Visualizer
 
+
+
+## Access the animated output example [here](https://gabrielcessil.github.io/RigidBodyControl_SimuAnimator/Mechanism_Animation.html)
+<p align="center">
+  <img src="docs/Printscreen.png" width="100%">
+</p>
+
+
 ## Overview
 
 This repository provides a Python-based tool for simulating and **visualizing the dynamic motion of rigid body mechanisms under a specified control law**. The framework numerically solves the nonlinear dynamics of a mechanism based on the Lagrangian formulation and produces an **interactive HTML animation file** that illustrates both the physical motion (in 3D space) and the evolution of state variables over time.
@@ -32,12 +40,6 @@ Another inspiring source for Futura pendulum integration and validation is prese
 
 Morever, here we present a validation with open-loop control law, but you can find a simple controller for furuta pendulum in the article below:
 > Aguilar-Avelar, Carlos, and Javier Moreno-Valenzuela. "A feedback linearization controller for trajectory tracking of the Furuta pendulum." 2014 American Control Conference. IEEE, 2014.
-
-
-## Access the animated output example [here](https://gabrielcessil.github.io/RigidBodyControl_SimuAnimator/Mechanism_Animation.html)
-<p align="center">
-  <img src="docs/Printscreen.png" width="100%">
-</p>
 
 ---
 
