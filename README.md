@@ -22,7 +22,7 @@ Where:
 - $$\(\mathbf{G(q)}\)$$ → gravitational force vector,
 - $$\(\mathbf{\tau}\)$$ → vector of external generalized forces (e.g., torques from actuators).
 
-The simulation requires the user to define the physical parameters and the functional forms of \(\mathbf{M(q)}\), \(\mathbf{C(q, \dot{q})}\), and \(\mathbf{G(q)}\) for the mechanism of interest. Given any control law \(\mathbf{\tau}(t, \mathbf{q}, \dot{\mathbf{q}})\), the simulator computes the time evolution of the system states \(\mathbf{q}(t)\) and \(\dot{\mathbf{q}}(t)\).
+The simulation requires the user to define the physical parameters and the functional forms of $$\(\mathbf{M(q)}\)$$, $$\(\mathbf{C(q, \dot{q})}\)$$, and $$\(\mathbf{G(q)}\)$$ for the mechanism of interest. Given any control law $$\(\mathbf{\tau}(t, \mathbf{q}, \dot{\mathbf{q}})\)$$, the simulator computes the time evolution of the system states $$\(\mathbf{q}(t)\)$$ and $$\(\dot{\mathbf{q}}(t)\)$$.
 
 The tool is validates here integrating the dynamic equation of Rotary Pendulum. A complete implementation of the **Furuta Pendulum** (rotational inverted pendulum) is included, using the rigorous dynamic model derived in:
 > B. S. Cazzolato and Z. Prime, "On the Dynamics of the Furuta Pendulum," *Journal of Control Science and Engineering*, vol. 2011, Article ID 528341. [https://doi.org/10.1155/2011/528341](https://doi.org/10.1155/2011/528341)
