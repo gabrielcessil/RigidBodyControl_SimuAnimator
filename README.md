@@ -6,8 +6,25 @@
 This repository provides a Python-based tool for simulating and **visualizing the dynamic motion of rigid body mechanisms under a specified control law**. The framework numerically solves the nonlinear dynamics of a mechanism based on the Lagrangian formulation and produces an **interactive HTML animation file** that illustrates both the physical motion (in 3D space) and the evolution of state variables over time.
 
 This tool is designed for academic and educational purposes in the fields of **dynamics, control systems, robotics, and mechanical systems modeling**. The main idea is to provide a framework of comprehension about control laws and robotic dynamic equations.
+## Mathematical Formulation
 
-Our tool is validates here integrating the dynamic equation of Rotary Pendulum. A complete implementation of the **Furuta Pendulum** (rotational inverted pendulum) is included, using the rigorous dynamic model derived in:
+This code is designed to simulate the motion of rigid body mechanical systems by numerically solving their nonlinear dynamic equations. The formulation is based on the Euler-Lagrange approach, widely used in robotics and multibody dynamics. The general form of the equations of motion is:
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\boxed{\mathbf{M(q)}\,\ddot{\mathbf{q}} \, + \, \mathbf{C(q, \dot{q})}\,\dot{\mathbf{q}} \, + \, \mathbf{G(q)} \, = \, \mathbf{\tau}}">
+</p>
+
+Where:
+
+- \(\mathbf{q}\) → vector of generalized coordinates (e.g., joint angles or positions),
+- \(\mathbf{M(q)}\) → mass (inertia) matrix,
+- \(\mathbf{C(q, \dot{q})}\) → Coriolis and centrifugal matrix,
+- \(\mathbf{G(q)}\) → gravitational force vector,
+- \(\mathbf{\tau}\) → vector of external generalized forces (e.g., torques from actuators).
+
+The simulation requires the user to define the physical parameters and the functional forms of \(\mathbf{M(q)}\), \(\mathbf{C(q, \dot{q})}\), and \(\mathbf{G(q)}\) for the mechanism of interest. Given any control law \(\mathbf{\tau}(t, \mathbf{q}, \dot{\mathbf{q}})\), the simulator computes the time evolution of the system states \(\mathbf{q}(t)\) and \(\dot{\mathbf{q}}(t)\).
+
+The tool is validates here integrating the dynamic equation of Rotary Pendulum. A complete implementation of the **Furuta Pendulum** (rotational inverted pendulum) is included, using the rigorous dynamic model derived in:
 > B. S. Cazzolato and Z. Prime, "On the Dynamics of the Furuta Pendulum," *Journal of Control Science and Engineering*, vol. 2011, Article ID 528341. [https://doi.org/10.1155/2011/528341](https://doi.org/10.1155/2011/528341)
 
 
