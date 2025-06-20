@@ -1,6 +1,4 @@
-# Save the finalized README content into a downloadable markdown file
 
-readme_content = """
 # Robotic Mechanism Simulator and Visualizer
 
 ## Overview
