@@ -53,8 +53,24 @@ This tool provides a **visual and quantitative understanding** of how a given ri
 - Test and refine control strategies by visually examining system behavior.
 
 ---
+## Using the `Mechanism` Class
 
-## Example: Furuta Pendulum Simulation
+### Class Description
+
+The `Mechanism` class is an abstract base class that represents the general structure of any rigid body mechanism. It provides the necessary methods to solve the equations of motion of a system defined in the Euler-Lagrange formulation.
+
+### Methods to Implement in a Subclass
+
+To define a specific mechanism (e.g., the Rotary Pendulum), the user must inherit from `Mechanism` and implement the following methods:
+
+- **`M(q)`**: Returns the mass (inertia) matrix of the system, a function of the generalized coordinates `q`.
+
+- **`C(q, q_dot)`**: Returns the Coriolis and centrifugal matrix, dependent on the generalized coordinates `q` and their time derivatives `q_dot`.
+
+- **`G(q)`**: Returns the gravity vector, representing gravitational forces as a function of `q`.
+
+- **`direct_kinematics(state)`**: Computes the 3D positions of key points in the mechanism for visualization, given the current state (positions and velocities).
+## Usage Example:  Furuta Pendulum Simulation
 
 ### Model Description
 
@@ -65,7 +81,80 @@ The Furuta Pendulum is a classical underactuated system composed of:
 
 This simulation accurately represents the nonlinear coupled dynamics, including full inertia tensors, centripetal, Coriolis, viscous damping, and gravitational forces, following the derivations from Cazzolato and Prime (2011).
 
-### Code Example
+### Model Implementation
+```python
+class Rotary_Pendulum(Mechanism):
+
+    def __init__(self, params, origin=[0,0,0]):
+        self.params = params
+        self.origin = origin
+
+    # Calculate positions in 3D space given a state
+    def direct_kinematics(self, state):
+        theta_base, theta_pen = state[0], -state[1]
+
+        L1, L2 = self.params["L1"], self.params["L2"]
+        x0, y0, z0 = self.origin
+
+        # Posição do braço base
+        x1 = L1 * np.cos(theta_base)
+        y1 = L1 * np.sin(theta_base)
+        z1 = 0
+
+        # Posição do pêndulo
+        x2 = x1 + L2 * np.sin(theta_base) * np.sin(theta_pen)
+        y2 = y1 - L2 * np.cos(theta_base) * np.sin(theta_pen)
+        z2 = - L2 * np.cos(theta_pen)
+
+        return (x0, y0, z0), (x1, y1, z1), (x2, y2, z2)
+
+    # Auxiliary methods
+    # Get mass matrix
+    def M(self, q):
+      # Read parameters
+      J1, J2 = self.params['J1'], self.params['J2']
+      m1, m2 = self.params['m1'], self.params['m2']
+      l1, l2 = self.params['l1'], self.params['l2']
+      L1, L2 = self.params['L1'], self.params['L2']
+      # Calculate composed parameters
+      J1_ = J1+m1*l1**2
+      J0_ = J1_+m2*L1**2
+      J2_ = J2 +m2*l2**2
+      # Calculate mass matrix elements
+      M11 = J0_ + J2_*np.sin(q[1])**2
+      M12 = m2*L1*l2*np.cos(q[1])
+      M21 = m2*L1*l2*np.cos(q[1])
+      M22 = J2_
+      return np.array([[M11, M12],[M21, M22]])
+
+    # Get centrifugal matrix
+    def C(self, q, q_dot):
+      # Read parameters
+      J1, J2 = self.params['J1'], self.params['J2']
+      m1, m2 = self.params['m1'], self.params['m2']
+      l1, l2 = self.params['l1'], self.params['l2']
+      L1, L2 = self.params['L1'], self.params['L2']
+      b1, b2 = self.params['b1'], self.params['b2']
+      # Calculate composed parameters
+      J2_ = J2 +m2*l2**2
+      # Calculate centrifugal parameters elements
+      C11 = b1 + 0.5*q_dot[1]*J2_*np.sin(2*q[1])
+      C12 = 0.5*q_dot[1]*J2_*np.sin(2*q[1])-m2*L1*l2*np.sin(q[1])*q_dot[1]
+      C21 = -0.5*q_dot[0]*J2_*np.sin(2*q[1])
+      C22 = b2
+      return np.array([[C11,C12],[C21,C22]])
+
+    # Get gravity matrix
+    def G(self, q, g=9.81):
+      # Get parameters
+      m1, m2 = self.params['m1'],self.params['m2']
+      L1, L2 = self.params['L1'],self.params['L2']
+      # Calculate matrix elements
+      G1, G2 = 0, g*m2*L2*np.sin(q[1])
+      return np.array([G1,G2])
+```
+
+### Final Code Example
 
 ```python
 from rotary_pendulum import Rotary_Pendulum
@@ -86,11 +175,11 @@ params = {
     "b2": 2.8e-4
 }
 
+
+# Usage of the mechanism class by the Rotaty Pendulum
 pendulum = Rotary_Pendulum(params)
 
-def control_law(t, q):
-    return np.array([0.2, 0])
-
+# Initial states compatible to the mechanism class
 initial_state = {
     "theta_base": 0,
     "theta_pend": 0,
@@ -98,7 +187,13 @@ initial_state = {
     "omega_pend": 0
 }
 
+# Open loop control law
+def control_law(t, q):
+    return np.array([0.2, 0])
+
+# Mechanism integration
 pendulum.solve_system(control_law, x0=initial_state, tf=4, steps=400)
 
 animator = MechanicalSystemAnimation(pendulum)
 animator.create_animation()
+```
