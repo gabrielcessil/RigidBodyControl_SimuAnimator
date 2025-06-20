@@ -28,7 +28,7 @@ The tool is validates here integrating the dynamic equation of Rotary Pendulum. 
 > B. S. Cazzolato and Z. Prime, "On the Dynamics of the Furuta Pendulum," *Journal of Control Science and Engineering*, vol. 2011, Article ID 528341. [https://doi.org/10.1155/2011/528341](https://doi.org/10.1155/2011/528341)
 
 
-## Output example [here](https://gabrielcessil.github.io/RigidBodyControl_SimuAnimator/Mechanism_Animation.html)
+## Access the animated output example [here](https://gabrielcessil.github.io/RigidBodyControl_SimuAnimator/Mechanism_Animation.html)
 <p align="center">
   <img src="docs/Printscreen.png" width="100%">
 </p>
