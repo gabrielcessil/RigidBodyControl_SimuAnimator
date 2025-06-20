@@ -10,17 +10,17 @@ This tool is designed for academic and educational purposes in the fields of **d
 
 This code is designed to simulate the motion of rigid body mechanical systems by numerically solving their nonlinear dynamic equations. The formulation is based on the Euler-Lagrange approach, widely used in robotics and multibody dynamics. The general form of the equations of motion is:
 
-<p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\boxed{\mathbf{M(q)}\,\ddot{\mathbf{q}} \, + \, \mathbf{C(q, \dot{q})}\,\dot{\mathbf{q}} \, + \, \mathbf{G(q)} \, = \, \mathbf{\tau}}">
-</p>
+$$
+\boxed{\mathbf{M(q)}\,\ddot{\mathbf{q}} + \mathbf{C(q,\dot{q})}\,\dot{\mathbf{q}} + \mathbf{G(q)} = \mathbf{\tau}}
+$$
 
 Where:
 
-- \(\mathbf{q}\) → vector of generalized coordinates (e.g., joint angles or positions),
-- \(\mathbf{M(q)}\) → mass (inertia) matrix,
-- \(\mathbf{C(q, \dot{q})}\) → Coriolis and centrifugal matrix,
-- \(\mathbf{G(q)}\) → gravitational force vector,
-- \(\mathbf{\tau}\) → vector of external generalized forces (e.g., torques from actuators).
+- $$\(\mathbf{q}\)$$ → vector of generalized coordinates (e.g., joint angles or positions),
+- $$\(\mathbf{M(q)}\)$$ → mass (inertia) matrix,
+- $$\(\mathbf{C(q, \dot{q})}\)$$ → Coriolis and centrifugal matrix,
+- $$\(\mathbf{G(q)}\)$$ → gravitational force vector,
+- $$\(\mathbf{\tau}\)$$ → vector of external generalized forces (e.g., torques from actuators).
 
 The simulation requires the user to define the physical parameters and the functional forms of \(\mathbf{M(q)}\), \(\mathbf{C(q, \dot{q})}\), and \(\mathbf{G(q)}\) for the mechanism of interest. Given any control law \(\mathbf{\tau}(t, \mathbf{q}, \dot{\mathbf{q}})\), the simulator computes the time evolution of the system states \(\mathbf{q}(t)\) and \(\dot{\mathbf{q}}(t)\).
 
